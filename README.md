@@ -45,25 +45,6 @@ A real-time AI meeting assistant that captures live speech, generates transcript
 - Styling: CSS  
 - Deployment: Vercel  
 
-## Project Structure
-
-app/
- ├── api/
- │    ├── chat/route.ts
- │    ├── suggest/route.ts
- │    └── transcribe/route.ts
- │
- ├── components/
- │    ├── ChatPanel.tsx
- │    ├── MicRecorder.tsx
- │    ├── SuggestionsPanel.tsx
- │    ├── TranscriptPanel.tsx
- │    ├── SettingsPanel.tsx
- │    └── ExportButton.tsx
- │
- ├── layout.tsx
- └── page.tsx
-
 ## Setup Instructions
 
 ### 1. Clone the repository
