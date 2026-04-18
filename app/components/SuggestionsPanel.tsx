@@ -10,10 +10,10 @@ export default function SuggestionsPanel({
   setChatHistory,
 }: any) {
 
-  // ✅ Store latest transcript
+  //  Store latest transcript
   const transcriptRef = useRef<string[]>([]);
 
-  // ✅ Store latest API key (CRITICAL FIX)
+  //  Store latest API key (CRITICAL FIX)
   const apiKeyRef = useRef<string>("");
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function SuggestionsPanel({
     apiKeyRef.current = apiKey;
   }, [apiKey]);
 
-  // ✅ AUTO FETCH (uses latest refs)
+  //  AUTO FETCH (uses latest refs)
   const fetchSuggestionsFromRef = async () => {
     if (!transcriptRef.current.length) return;
     if (!apiKeyRef.current) return; // prevent empty key calls
@@ -49,7 +49,7 @@ export default function SuggestionsPanel({
     }
   };
 
-  // ✅ MANUAL REFRESH (uses latest props)
+  //  MANUAL REFRESH (uses latest props)
   const fetchSuggestions = async () => {
     if (!transcriptChunks.length) return;
     if (!apiKey) return;
@@ -74,7 +74,7 @@ export default function SuggestionsPanel({
     }
   };
 
-  // ✅ INTERVAL (runs once, uses refs internally)
+  //  INTERVAL (runs once, uses refs internally)
   useEffect(() => {
     const interval = setInterval(() => {
       fetchSuggestionsFromRef();
@@ -102,7 +102,7 @@ export default function SuggestionsPanel({
               onClick={async () => {
                 const msg = s.preview;
 
-                // ✅ Add user message
+                //  Add user message
                 setChatHistory((prev: any) => [
                   ...prev,
                   { role: "user", content: msg },
@@ -113,7 +113,7 @@ export default function SuggestionsPanel({
                     method: "POST",
                     headers: {
                       "Content-Type": "application/json",
-                      "x-api-key": apiKeyRef.current, // ✅ use ref here too
+                      "x-api-key": apiKeyRef.current, // use ref here too
                     },
                     body: JSON.stringify({
                       transcript: transcriptRef.current.join(" "),
@@ -123,7 +123,7 @@ export default function SuggestionsPanel({
 
                   const data = await res.json();
 
-                  // ✅ Add AI response
+                  //  Add AI response
                   setChatHistory((prev: any) => [
                     ...prev,
                     { role: "assistant", content: data.answer },

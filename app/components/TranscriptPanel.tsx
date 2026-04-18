@@ -21,7 +21,7 @@ export default function TranscriptPanel({
         <p key={i}>{t}</p>
       ))}
 
-      {/* 👇 invisible anchor */}
+      {/*  invisible anchor */}
       <div ref={bottomRef} />
     </div>
   );

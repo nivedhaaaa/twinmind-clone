@@ -2,7 +2,7 @@ export async function POST(req: Request) {
   try {
     const { transcript, question } = await req.json();
 
-    // ✅ CORRECT: extract API key BEFORE fetch
+    
     const apiKey = req.headers.get("x-api-key");
 
     if (!apiKey) {
@@ -37,7 +37,7 @@ ${question}
 
     if (!data.choices || !data.choices.length) {
       return Response.json({
-        answer: "⚠️ AI could not generate a response.",
+        answer: " AI could not generate a response.",
       });
     }
 
@@ -49,7 +49,7 @@ ${question}
     console.error("Chat API error:", error);
 
     return Response.json({
-      answer: "⚠️ Something went wrong.",
+      answer: " Something went wrong.",
     });
   }
 }

@@ -31,7 +31,7 @@ export async function POST(req: Request) {
     console.error("Transcription API error:", err.response?.data || err);
 
     return Response.json({
-      text: "⚠️ Transcription failed",
+      text: " Transcription failed",
     });
   }
 }
