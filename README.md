@@ -2,9 +2,6 @@
 
 A real-time AI meeting assistant that captures live speech, generates transcripts, suggests smart follow-ups, and enables contextual chat — all powered by Groq APIs.
 
-## Public link
-(Add your deployed Vercel link here)
-
 ##  Features
 
 ###  Live Transcription
@@ -45,6 +42,13 @@ A real-time AI meeting assistant that captures live speech, generates transcript
 - Styling: CSS  
 - Deployment: Vercel  
 
+### Stack Choices (Why these technologies?)
+
+- **Next.js** → Enables full-stack development with API routes, reducing need for separate backend  
+- **React + TypeScript** → Improves maintainability and type safety  
+- **Groq APIs** → Fast inference for both transcription and LLM responses  
+- **Vercel** → Seamless deployment for Next.js apps with minimal configuration  
+
 ## Setup Instructions
 
 ### 1. Clone the repository
@@ -78,10 +82,65 @@ Open: http://localhost:3000
 4. Suggestions auto-refresh every 30 seconds  
 5. Clicking a suggestion sends it to chat  
 
+---
+
+## Prompt Strategy
+
+### Suggestions Generation
+- The prompt is structured to generate **exactly 3 outputs**:
+  1. A question  
+  2. An insight  
+  3. A clarification  
+- Output is enforced in **JSON format** for consistent parsing
+- Instructions ensure responses are:
+  - Short
+  - Context-aware
+  - Actionable
+
+### Chat Interaction
+- Combines:
+  - Full transcript context  
+  - User’s question  
+- This enables:
+  - Context-aware answers  
+  - More relevant responses  
+  - Better continuity in conversation  
+
+### Transcription Strategy
+- Audio is processed in **fixed intervals (~30 seconds)**
+- Each chunk is sent to Whisper API
+- Results are appended to transcript incrementally
+- This balances:
+  - Performance
+  - Latency
+  - API usage limits  
+
+---
+
+## Tradeoffs
+
+### Pros
+- Simple architecture (no separate backend needed)
+- Fast development using Next.js API routes
+- Works entirely in browser with user-provided API key
+- Modular and easy-to-understand components
+
+### Limitations
+- Not true real-time streaming (uses chunked transcription)
+- Suggestions rely only on recent transcript context
+- Requires manual API key input by user
+- No persistent storage (session-based only)
+
+### Design Decisions
+- Chose chunk-based transcription instead of streaming to reduce complexity  
+- Limited suggestions to 3 for clarity and usability  
+- Used localStorage for API key to avoid backend storage/security concerns  
+
+---
+
 ##  Deployment
 
 Deployed using Vercel:
 
 npm install -g vercel  
 vercel  
-
