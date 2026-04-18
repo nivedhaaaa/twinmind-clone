@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+#  TwinMind Clone – AI Meeting Assistant
 
-## Getting Started
+A real-time AI meeting assistant that captures live speech, generates transcripts, suggests smart follow-ups, and enables contextual chat — all powered by Groq APIs.
 
-First, run the development server:
+## Public link
+(Add your deployed Vercel link here)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+##  Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+###  Live Transcription
+- Records audio from microphone
+- Converts speech to text using Groq Whisper API
+- Updates transcript in near real-time (~30 second chunks)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+###  Smart Suggestions
+- Generates contextual suggestions based on recent transcript
+- Includes:
+  - Questions
+  - Insights
+  - Clarifications
+- Auto-refreshes every 30 seconds
+- Manual refresh supported
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+###  Context-Aware Chat
+- Ask questions based on meeting context
+- Uses transcript as input
+- Powered by Groq LLaMA 3
 
-## Learn More
+###  API Key Management
+- User inputs Groq API key via UI
+- Stored in browser (localStorage)
+- Passed securely to backend APIs
 
-To learn more about Next.js, take a look at the following resources:
+###  UI Layout
+- 3-panel interface:
+  - Transcript (left)
+  - Suggestions (center)
+  - Chat (right)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Frontend: Next.js (App Router), React, TypeScript  
+- Backend: Next.js API Routes  
+- AI APIs: Groq (Whisper + LLaMA 3)  
+- Styling: CSS  
+- Deployment: Vercel  
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+app/
+ ├── api/
+ │    ├── chat/route.ts
+ │    ├── suggest/route.ts
+ │    └── transcribe/route.ts
+ │
+ ├── components/
+ │    ├── ChatPanel.tsx
+ │    ├── MicRecorder.tsx
+ │    ├── SuggestionsPanel.tsx
+ │    ├── TranscriptPanel.tsx
+ │    ├── SettingsPanel.tsx
+ │    └── ExportButton.tsx
+ │
+ ├── layout.tsx
+ └── page.tsx
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Setup Instructions
+
+### 1. Clone the repository
+git clone https://github.com/nivedhaaaa/twinmind-clone.git  
+cd twinmind-clone  
+
+### 2. Install dependencies
+npm install  
+
+### 3. Run locally
+npm run dev  
+
+Open: http://localhost:3000  
+
+---
+
+##  Groq API Key Setup
+
+1. Go to https://console.groq.com  
+2. Generate an API key  
+3. Paste it into the Settings panel in the app  
+4. Click Save  
+
+## How It Works
+
+1. Start microphone recording  
+2. Speech is transcribed using Whisper  
+3. Transcript is used for:
+   - Suggestions generation  
+   - Chat context  
+4. Suggestions auto-refresh every 30 seconds  
+5. Clicking a suggestion sends it to chat  
+
+##  Deployment
+
+Deployed using Vercel:
+
+npm install -g vercel  
+vercel  
+
